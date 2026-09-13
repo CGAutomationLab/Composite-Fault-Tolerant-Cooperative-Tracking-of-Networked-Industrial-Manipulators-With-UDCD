@@ -1,4 +1,5 @@
 Composite Fault-Tolerant Cooperative Tracking of Networked Industrial Manipulators With Unknown Dynamic Communication Delays
+
 Notice 1: This repository provides the ROS 2 / Gazebo experimental implementation corresponding to the manuscript entitled “Composite Fault-Tolerant Cooperative Tracking of Networked Industrial Manipulators With Unknown Dynamic Communication Delays.”
 Notice 2: The current repository is provided for experimental reproducibility and peer review. It contains a runnable binary implementation of the proposed method together with the required ROS 2 launch files, controller configurations, robot descriptions, and simulation runtime files. The complete source code of the proposed observer and controller will be released after the paper is formally published.
 Notice 3: The experiments provided in this repository are ROS 2 / Gazebo simulations using four six-DOF UR5e industrial manipulators and should not be interpreted as physical-hardware experiments.

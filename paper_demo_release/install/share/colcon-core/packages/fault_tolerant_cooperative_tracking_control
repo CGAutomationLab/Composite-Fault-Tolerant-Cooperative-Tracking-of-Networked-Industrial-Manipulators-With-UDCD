@@ -1,0 +1,1 @@
+ament_index_python:control_msgs:controller_manager:controller_manager_msgs:geometry_msgs:gz-sim8:gz_ros2_control:joint_state_broadcaster:launch:launch_ros:nav_msgs:rclcpp:robot_state_publisher:ros_gz_bridge:ros_gz_sim:sensor_msgs:std_msgs:std_srvs:tf2:tf2_geometry_msgs:tf2_ros:trajectory_msgs:ur_description:ur_msgs:ur_simulation_gz:visualization_msgs:xacro

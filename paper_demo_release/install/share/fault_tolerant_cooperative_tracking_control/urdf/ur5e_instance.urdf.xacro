@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+
+<robot
+  xmlns:xacro="http://wiki.ros.org/xacro"
+  name="$(arg name)">
+
+  <!-- Robot instance parameters -->
+  <xacro:arg name="name" default="ur"/>
+  <xacro:arg name="ur_type" default="ur5e"/>
+  <xacro:arg name="tf_prefix" default=""/>
+  <xacro:arg name="ros_namespace" default=""/>
+  <xacro:arg name="simulation_controllers" default=""/>
+
+  <!-- Safety parameters -->
+  <xacro:arg name="safety_limits" default="true"/>
+  <xacro:arg name="safety_pos_margin" default="0.15"/>
+  <xacro:arg name="safety_k_position" default="20"/>
+
+  <!-- Height of the suspended robot base -->
+  <xacro:arg name="robot_mount_height" default="1.6"/>
+
+  <!-- UR model parameter files -->
+  <xacro:arg
+    name="joint_limit_params"
+    default="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml"/>
+
+  <xacro:arg
+    name="kinematics_params"
+    default="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml"/>
+
+  <xacro:arg
+    name="physical_params"
+    default="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml"/>
+
+  <xacro:arg
+    name="visual_params"
+    default="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml"/>
+
+  <xacro:arg
+    name="transmission_hw_interface"
+    default=""/>
+
+  <!-- Initial joint positions -->
+  <xacro:property
+    name="initial_positions"
+    value="${dict(
+      shoulder_pan_joint=0.0,
+      shoulder_lift_joint=0.0,
+      elbow_joint=0.0,
+      wrist_1_joint=0.0,
+      wrist_2_joint=0.0,
+      wrist_3_joint=0.0
+    )}"/>
+
+  <!-- Official UR macros -->
+  <xacro:include
+    filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+
+  <xacro:include
+    filename="$(find ur_simulation_gz)/urdf/ur_gz.ros2_control.xacro"/>
+
+  <!-- Fixed world reference -->
+  <link name="world"/>
+
+  <!--
+    UR5e mechanical model.
+
+    The robot is connected directly to the world link through a fixed joint
+    generated inside the ur_robot macro. There is no pedestal, cylinder,
+    support collision geometry, or support inertial model.
+
+    robot_mount_height controls the suspended height of the robot base.
+  -->
+  <xacro:ur_robot
+    name="$(arg name)"
+    tf_prefix="$(arg tf_prefix)"
+    parent="world"
+    joint_limits_parameters_file="$(arg joint_limit_params)"
+    kinematics_parameters_file="$(arg kinematics_params)"
+    physical_parameters_file="$(arg physical_params)"
+    visual_parameters_file="$(arg visual_params)"
+    safety_limits="$(arg safety_limits)"
+    safety_pos_margin="$(arg safety_pos_margin)"
+    safety_k_position="$(arg safety_k_position)"
+    force_abs_paths="true">
+
+    <origin
+      xyz="0 0 $(arg robot_mount_height)"
+      rpy="0 0 0"/>
+
+  </xacro:ur_robot>
+
+  <!-- Gazebo reference for the fixed world link -->
+  <gazebo reference="world"/>
+
+  <!-- Independent gz_ros2_control instance -->
+  <gazebo>
+    <plugin
+      filename="gz_ros2_control-system"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+      <parameters>
+        $(arg simulation_controllers)
+      </parameters>
+
+      <hold_joints>true</hold_joints>
+      <position_proportional_gain>0.1</position_proportional_gain>
+
+      <ros>
+        <namespace>$(arg ros_namespace)</namespace>
+      </ros>
+
+    </plugin>
+  </gazebo>
+
+  <!-- ros2_control hardware interfaces -->
+  <xacro:ur_ros2_control
+    name="$(arg name)"
+    tf_prefix="$(arg tf_prefix)"
+    transmission_hw_interface="$(arg transmission_hw_interface)"
+    initial_positions="${initial_positions}"/>
+
+</robot>

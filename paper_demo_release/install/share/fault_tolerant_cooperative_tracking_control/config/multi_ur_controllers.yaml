@@ -1,0 +1,53 @@
+/**/controller_manager:
+  ros__parameters:
+    update_rate: 500
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+
+/ur1/effort_controller:
+  ros__parameters:
+    joints:
+      - ur1_shoulder_pan_joint
+      - ur1_shoulder_lift_joint
+      - ur1_elbow_joint
+      - ur1_wrist_1_joint
+      - ur1_wrist_2_joint
+      - ur1_wrist_3_joint
+
+
+/ur2/effort_controller:
+  ros__parameters:
+    joints:
+      - ur2_shoulder_pan_joint
+      - ur2_shoulder_lift_joint
+      - ur2_elbow_joint
+      - ur2_wrist_1_joint
+      - ur2_wrist_2_joint
+      - ur2_wrist_3_joint
+
+
+/ur3/effort_controller:
+  ros__parameters:
+    joints:
+      - ur3_shoulder_pan_joint
+      - ur3_shoulder_lift_joint
+      - ur3_elbow_joint
+      - ur3_wrist_1_joint
+      - ur3_wrist_2_joint
+      - ur3_wrist_3_joint
+
+
+/ur4/effort_controller:
+  ros__parameters:
+    joints:
+      - ur4_shoulder_pan_joint
+      - ur4_shoulder_lift_joint
+      - ur4_elbow_joint
+      - ur4_wrist_1_joint
+      - ur4_wrist_2_joint
+      - ur4_wrist_3_joint

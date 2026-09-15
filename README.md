@@ -217,7 +217,7 @@ fault_tolerant_cooperative_tracking_control \
 four_tracking_controllers.launch.py
 ```
 
-This launch file starts the cooperative-start synchronization node and the four tracking controller nodes. The four networked UR5e manipulators will then execute the cooperative tracking experiment.
+This launch file starts the cooperative-start synchronization node and the four tracking controller nodes. The four networked UR5e manipulators will then execute the cooperative tracking experiment for 30s.
 
 To terminate the experiment, use `Ctrl+C` in the running terminals.
 

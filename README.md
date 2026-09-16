@@ -118,7 +118,7 @@ Clone the repository into the home directory as `paper_demo_ws_release`:
 ```bash
 cd ~
 
-git clone https://github.com/CGAutomationLab/XXXX.git paper_demo_ws_release
+git clone https://github.com/CGAutomationLab/Composite-Fault-Tolerant-Cooperative-Tracking-of-Networked-Industrial-Manipulators-With-UDCD.git
 ```
 
 Enter the released workspace:
@@ -126,8 +126,6 @@ Enter the released workspace:
 ```bash
 cd ~/paper_demo_ws_release
 ```
-
-> **Note:** Replace `https://github.com/CGAutomationLab/XXXX.git` with the final GitHub address of this paper.
 
 The repository contains the precompiled ROS 2 installation tree under:
 

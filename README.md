@@ -116,8 +116,6 @@ For the experiments in this repository, no physical UR5e robot, robot IP address
 Clone the repository into the home directory as `paper_demo_ws_release`:
 
 ```bash
-cd ~
-
 git clone https://github.com/CGAutomationLab/Composite-Fault-Tolerant-Cooperative-Tracking-of-Networked-Industrial-Manipulators-With-UDCD.git
 ```
 
